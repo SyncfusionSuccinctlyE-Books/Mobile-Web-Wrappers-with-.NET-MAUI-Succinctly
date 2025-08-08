@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:MobileWrapper.Views"
+             x:Class="MobileWrapper.MainPage">
+
+    <Grid>
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <views:CustomWebView BindingContext="{Binding}" Source="{Binding Source}"
+                                 LocationRetrieved="RootWebView_LocationRetrieved"
+                                 x:Name="RootWebView" 
+                                 WebNavigated="RootWebView_Navigated" 
+                                 WebNavigating="RootWebView_Navigating"
+                                 Navigated="RootWebView_Navigated"
+                                 Navigating="RootWebView_Navigating"
+                                 TextBoxValuesRetrieved="RootWebView_TextBoxValuesRetrieved"
+                                 PdfRequested="RootWebView_PdfRequested"/>
+            <ActivityIndicator Color="Blue" x:Name="SpinnerGrid" IsVisible="False" IsRunning="True" WidthRequest="60" HeightRequest="60"/>
+
+            <Grid x:Name="NavigationBar" Grid.Row="1" IsVisible="False" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Home -->
+                <VerticalStackLayout Grid.Column="0" Spacing="2" HorizontalOptions="Center">
+                    <Image Source="home.png" HeightRequest="24" WidthRequest="24"/>
+                    <Label Text="Home" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHomeTapped"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <!-- Brochure -->            
+                <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="Center">
+                    <Image Source="document.png" HeightRequest="24" WidthRequest="24"/>
+                    <Label Text="Brochure" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBrochureTapped"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <!-- My Profile -->
+                <VerticalStackLayout Grid.Column="2" Spacing="2" HorizontalOptions="Center">
+                    <Image Source="profile.png" HeightRequest="24" WidthRequest="24"/>
+                    <Label Text="My Profile" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMyProfileTapped"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <!-- Geolocation -->
+                <VerticalStackLayout Grid.Column="3" Spacing="2" HorizontalOptions="Center">
+                    <Image Source="location.png" HeightRequest="24" WidthRequest="24"/>
+                    <Label Text="Location" FontSize="12" HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGeolocationTapped"/>
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="NoNetworkGrid" IsVisible="False" InputTransparent="False">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <Grid HorizontalOptions="Fill" VerticalOptions="Fill" InputTransparent="False" />
+            <Border BackgroundColor="White" Stroke="White" Grid.Row="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40,40,0,0" />
+                </Border.StrokeShape>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="No internet connection" 
+                           Margin="0,30,0,0" HorizontalTextAlignment="Center" 
+                           FontAttributes="Bold" FontSize="Title" />
+                    <Label Grid.Row="1" Margin="15,30,15,0" 
+                           Text="Internet connection not available. Select a network from system settings." 
+                           FontSize="Medium" TextColor="Black" 
+                           HorizontalTextAlignment="Center" />
+                    <Button Grid.Row="2" Margin="40,30,40,0" 
+                            Text="Open Settings" CornerRadius="20" 
+                            BackgroundColor="Blue" TextColor="White" 
+                            x:Name="NetworkSettingsButton" 
+                            Clicked="NetworkSettingsButton_Clicked" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

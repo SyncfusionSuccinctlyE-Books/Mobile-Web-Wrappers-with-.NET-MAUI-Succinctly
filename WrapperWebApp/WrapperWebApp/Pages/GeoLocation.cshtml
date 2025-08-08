@@ -1,0 +1,54 @@
+﻿@page
+@model WrapperWebApp.Pages.GeoLocationModel
+@{
+    ViewData["Title"] = "Geolocation";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<button onclick="getLocation()">Get Location</button>
+
+<p id="status"></p>
+<p id="location"></p>
+
+@section Scripts {
+    <script>
+        function getLocation() {
+            const status = document.getElementById('status');
+            const locationDisplay = document.getElementById('location');
+
+            if (!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser.';
+                return;
+            }
+
+            status.textContent = 'Locating…';
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude.toFixed(6);
+                    const longitude = position.coords.longitude.toFixed(6);
+
+                    status.textContent = 'Location found!';
+                    locationDisplay.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                },
+                (error) => {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            status.textContent = 'Permission denied. Please allow location access.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            status.textContent = 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            status.textContent = 'Location request timed out.';
+                            break;
+                        default:
+                            status.textContent = 'An unknown error occurred.';
+                            break;
+                    }
+                }
+            );
+        }
+    </script>
+}
