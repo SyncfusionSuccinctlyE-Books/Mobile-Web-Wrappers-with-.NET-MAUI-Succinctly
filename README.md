@@ -1,5 +1,5 @@
 # Mobile Web Wrappers with .NET MAUI Succinctly
-This is the companion repo for [*Mobile Web Wrappers with .NET MAUI Succinctly*](https://www.syncfusion.com/ebooks) by Alessandro Del Sole. Published by Syncfusion, Inc.
+This is the companion repo for [*Mobile Web Wrappers with .NET MAUI Succinctly*](https://www.syncfusion.com/succinctly-free-ebooks/mobile-web-wrappers-with-dot-net-maui-succinctly) by Alessandro Del Sole. Published by Syncfusion, Inc.
 
 [![cover](https://github.com/SyncfusionSuccinctlyE-Books/Mobile-Web-Wrappers-with-.NET-MAUI-Succinctly/blob/main/cover.png)](https://www.syncfusion.com/ebooks/)
 
